@@ -7,10 +7,12 @@ HOURS_MIN = 80
 # snap req
 snap = namedtuple("snap", ["income", "hours", "state"])
 
+
 snap = snap(int(input("What is the households yearly income? ")), int(input("What are the hours you have worked? ")), input("Do you live in washington (yes or no)? "))
+
 #calculate income and return True or False
 def income_calc():
-    if snap.income >= SNAP_REQ:
+    if snap.income <= SNAP_REQ:
         return True
     else:
         return False
@@ -29,14 +31,18 @@ def live_in_washington():
         return True
     else:
         return False
-            
 
-
+#collect all calculations and see if they qualify for snap
 def snap_qual():
     if income_calc() == True and hours_worked_calc() == True and live_in_washington() == True:
         print("You qualify")
     else:
         print("you dont qualify")
+        print()
+#print out why they didnt qualify
+        print(f"Qualified income: {income_calc()}")
+        print(f"Qualified hours: {hours_worked_calc()}")
+        print(f"Live in washington: {live_in_washington()}")
 
 #Program
 income_calc()
